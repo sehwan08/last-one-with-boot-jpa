@@ -6,6 +6,9 @@
 <div class="container">
 	<h1>회원 관리</h1>
 	<br>
+	<div>
+	
+	</div>
 	<c:forEach var="user" items="${lists.content}">
 	<c:if test="${user.id ne 1}">
 			<div class="card m-3">

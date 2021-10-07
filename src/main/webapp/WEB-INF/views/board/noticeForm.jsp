@@ -4,15 +4,18 @@
 <div class="container">
 	<form>
 		<div class="form-group">
-			<label for="title">Title:</label>
-			<input type="text" class="form-control" placeholder="Enter title" id="title">
+			<label for="title">제목:</label> <input type="text"
+				class="form-control" placeholder="Enter title" id="title">
 		</div>
 		<div class="form-group">
-			<label for="comment">Content:</label>
+			<label for="comment">내용:</label>
 			<textarea class="form-control summernote" rows="5" id="content"></textarea>
 		</div>
 	</form>
-	<button id="btn-save" class="btn btn-info float-right">글쓰기 완료</button>
+	<div class="float-right">
+		<button id="btn-save" class="btn btn-info">글쓰기</button>
+		<button type="button" class="btn btn-info" onclick="history.back()">이전</button>
+	</div>
 </div>
 <script>
 	$('.summernote').summernote({
@@ -20,4 +23,4 @@
 		height : 300
 	});
 </script>
-
+<script src="/js/notice.js"></script>

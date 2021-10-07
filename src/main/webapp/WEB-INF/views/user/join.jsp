@@ -14,8 +14,9 @@
 			<h1>회원 가입</h1>
 			<br> <br>
 			<div class="form-group">
-				<label for="username">아이디:</label> <input type="text" name="username"
-					class="form-control" placeholder="아이디를 입력하세요" required="required" maxlength="20">
+				<label for="username">아이디:</label> <input type="text"
+					name="username" class="form-control" placeholder="아이디를 입력하세요"
+					required="required" maxlength="20">
 			</div>
 
 			<div class="form-group">
@@ -52,23 +53,83 @@
 					<option value='60'>60세 이상</option>
 				</select>
 			</div>
-			<label for="preference">나의 여행 취향 (여러개 선택 가능)</label> <br>
-			<div class="form-check-inline">
-				<label class="form-check-label"> <input type="checkbox"
-					class="form-check-input" name="preference" value="food">맛집
-				</label>
+			<div>
+				<label for="preference">나의 여행 취향 (여러개 선택 가능)</label> <br>
+				<div class="form-check-inline">
+					<label class="form-check-label"> <input type="checkbox"
+						class="form-check-input" name="preference" value="food">맛집
+					</label>
+				</div>
+				<div class="form-check-inline">
+					<label class="form-check-label"> <input type="checkbox"
+						class="form-check-input" name="preference" value="healing">힐링
+					</label>
+				</div>
+				<div class="form-check-inline">
+					<label class="form-check-label"> <input type="checkbox"
+						class="form-check-input" name="preference" value="view">풍경
+					</label>
+				</div>
+				<div class="form-check-inline">
+					<label class="form-check-label"> <input type="checkbox"
+						class="form-check-input" name="preference" value="nature">자연(산,바다)
+					</label>
+				</div>
+				<div class="form-check-inline">
+					<label class="form-check-label"> <input type="checkbox"
+						class="form-check-input" name="preference" value="exp">전시체험
+					</label>
+				</div>
+				<div class="form-check-inline">
+					<label class="form-check-label"> <input type="checkbox"
+						class="form-check-input" name="preference" value="art">예술/건축물
+					</label>
+				</div>
+				<div class="form-check-inline">
+					<label class="form-check-label"> <input type="checkbox"
+						class="form-check-input" name="preference" value="exercise">운동/트레킹
+					</label>
+				</div>
 			</div>
-			<div class="form-check-inline">
-				<label class="form-check-label"> <input type="checkbox"
-					class="form-check-input" name="preference" value="healing">힐링
-				</label>
+
+			<div>
+				<div class="form-check-inline">
+					<label class="form-check-label"> <input type="checkbox"
+						class="form-check-input" name="preference" value="family">가족/반려동물
+					</label>
+				</div>
+				<div class="form-check-inline">
+					<label class="form-check-label"> <input type="checkbox"
+						class="form-check-input" name="preference" value="park">공원
+					</label>
+				</div>
+				<div class="form-check-inline">
+					<label class="form-check-label"> <input type="checkbox"
+						class="form-check-input" name="preference" value="nightview">야경
+					</label>
+				</div>
+				<div class="form-check-inline">
+					<label class="form-check-label"> <input type="checkbox"
+						class="form-check-input" name="preference" value="pic">사진
+					</label>
+				</div>
+				<div class="form-check-inline">
+					<label class="form-check-label"> <input type="checkbox"
+						class="form-check-input" name="preference" value="book">책
+					</label>
+				</div>
+				<div class="form-check-inline">
+					<label class="form-check-label"> <input type="checkbox"
+						class="form-check-input" name="preference" value="camp">캠핑
+					</label>
+				</div>
+				<div class="form-check-inline">
+					<label class="form-check-label"> <input type="checkbox"
+						class="form-check-input" name="preference" value="religion">역사/종교
+					</label>
+				</div>
 			</div>
-			<div class="form-check-inline">
-				<label class="form-check-label"> <input type="checkbox"
-					class="form-check-input" name="preference" value="view" >풍경
-				</label>
-			</div>
-			<br> <br>
+			<br>
 			<button type="submit" class="btn btn-primary">회원가입</button>
 			<button type="button" class="btn btn-primary"
 				onclick="location.href='/'">뒤로가기</button>

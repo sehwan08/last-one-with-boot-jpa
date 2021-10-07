@@ -14,12 +14,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 
 <title></title>
 </head>
@@ -53,7 +60,7 @@
 							<li class="nav-item"><a class="nav-link" href="/board/list">게시판
 									관리</a></li>
 							<li class="nav-item"><a class="nav-link"
-								href="/admin/notice">공지사항 관리</a></li>
+								href="/board/notice">공지사항 관리</a></li>
 							<li class="nav-item"><a class="nav-link" href="/logout">로그아웃(<sec:authentication
 										property="principal.user.username" />)
 							</a></li>
@@ -65,6 +72,12 @@
 						<ul class="navbar-nav">
 							<li class="nav-item"><a class="nav-link"
 								href="/user/${principal.user.id}/update">회원 정보 수정</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">인기 관광지</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">인기 맛집</a></li>
+							<li class="nav-item"><a class="nav-link" href="/etc/info">With
+									Corona</a></li>
+							<li class="nav-item"><a class="nav-link"
+								href="/board/notice">공지사항</a></li>
 							<li class="nav-item"><a class="nav-link" href="/logout">로그아웃(<sec:authentication
 										property="principal.user.username" />)
 							</a></li>

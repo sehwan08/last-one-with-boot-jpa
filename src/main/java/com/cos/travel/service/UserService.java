@@ -52,7 +52,7 @@ public class UserService {
 	//회원 탈퇴
 	@Transactional
 	public void delete(int id) {
-		System.out.println("=======나 실행됨?======"+ id);
+//		System.out.println("=======나 실행됨?======"+ id);
 		userRepository.deleteById(id);
 	}
 	

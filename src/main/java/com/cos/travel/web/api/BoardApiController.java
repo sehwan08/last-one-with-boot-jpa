@@ -3,7 +3,9 @@ package com.cos.travel.web.api;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,6 +27,12 @@ public class BoardApiController {
 	public ResponseEntity<?> save(@RequestBody Board board,
 			@AuthenticationPrincipal PrincipalDetails principal){
 		boardService.insert(board, principal.getUser());
+		return new ResponseEntity<>(new CMRespDto<>(1, "Success", null), HttpStatus.OK);
+	}
+	
+	@PutMapping("/api/board/{id}")
+	public ResponseEntity<?> update(@PathVariable int id, @RequestBody Board board){
+		boardService.update(id, board);
 		return new ResponseEntity<>(new CMRespDto<>(1, "Success", null), HttpStatus.OK);
 	}
 
