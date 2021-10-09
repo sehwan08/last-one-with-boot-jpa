@@ -1,7 +1,6 @@
 package com.cos.travel.service;
 
 
-import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,9 +20,11 @@ public class UserService {
 	private final UserRepository userRepository;
 	private final BCryptPasswordEncoder bCryptPasswordEncoder;
 	
+	
 	//회원 가입 진행
 	@Transactional
 	public User join(User user) {
+		
 		String rawPassword = user.getPassword();
 		String encPassword = bCryptPasswordEncoder.encode(rawPassword);
 		user.setPassword(encPassword);
@@ -66,5 +67,13 @@ public class UserService {
 	@Transactional
 	public void listuserdelete(int id){
 		userRepository.deleteById(id);
+	}
+	
+	//회원 중복 확인
+	@Transactional(readOnly = true)
+	public boolean idCheck(User user) {
+		if(userRepository.findByUsername(user.getUsername()) != null)
+			return false;
+		return true;
 	}
 }

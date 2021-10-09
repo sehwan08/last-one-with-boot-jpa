@@ -30,6 +30,7 @@ public class BoardApiController {
 		return new ResponseEntity<>(new CMRespDto<>(1, "Success", null), HttpStatus.OK);
 	}
 	
+	//공지사항 수정
 	@PutMapping("/api/board/{id}")
 	public ResponseEntity<?> update(@PathVariable int id, @RequestBody Board board){
 		boardService.update(id, board);

@@ -43,6 +43,14 @@ public class BoardService {
 				});
 	}
 	
+	//조회수
+	@Transactional
+	public Board view(int id) {
+		Board board = boardRepository.findById(id).get();
+		return board;
+	}
+	
+	
 	//공지사항 삭제
 	@Transactional
 	public void delete(int id) {

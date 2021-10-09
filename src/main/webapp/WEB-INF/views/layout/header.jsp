@@ -3,6 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
+	<%@ taglib uri="http://sargue.net/jsptags/time" prefix="javatime" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 
 <sec:authorize access="isAuthenticated()">
 	<sec:authentication property="principal" var="principal" />
@@ -27,6 +30,7 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+
 
 <title></title>
 </head>

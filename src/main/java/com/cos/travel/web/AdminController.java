@@ -53,7 +53,7 @@ public class AdminController {
 	//공지사항 수정 이동
 	@GetMapping("/board/noticeupdate/{id}")
 	public String updateForm(@PathVariable int id, Model model) {
-		model.addAttribute("board",boardService.detail(id));
+		model.addAttribute("board",boardService.view(id));
 		return "board/noticeupdateForm";
 	}
 }

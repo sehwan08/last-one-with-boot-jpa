@@ -21,8 +21,8 @@
 	</div>
 	<div class="form-group">
 		<label for="content">내용: </label>
-		<div>
-			<p>${board.content}</p>
+		<div style="border: 2px solid #d3d3d3; border-width:1px; border-radius: 5px;  padding:10px">
+			${board.content}
 		</div>
 	</div>
 

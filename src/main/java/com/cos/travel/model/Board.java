@@ -36,6 +36,7 @@ public class Board {
 	@Lob
 	private String content;
 	
+	//조회수
 	private int count;
 	
 	@ManyToOne
