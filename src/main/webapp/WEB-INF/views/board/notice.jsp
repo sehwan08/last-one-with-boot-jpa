@@ -53,70 +53,45 @@
 		</c:choose>
 	</table>
 
-	<c:choose>
-		<c:when test="${boards.first}">
-			<ul class="pagination justify-content-center">
+	<ul class="pagination justify-content-center">
+		<c:choose>
+			<c:when test="${boards.first}">
 				<li class="page-item disabled"><a class="page-link"
 					href="?page=${boards.number-1}">이전</a></li>
-					
-				<c:forEach var="i" begin="1" end="${boards.totalPages}" step="1">
-					<c:choose>
-					<c:when test="${i eq boards.number+1}">
-					<li class="page-item active"><a class="page-link" href="?page=${i-1}">${i}</a></li>
-					</c:when>
-					<c:otherwise>
-					<li class="page-item "><a class="page-link" href="?page=${i-1}">${i}</a></li>
-					</c:otherwise>
-					</c:choose>
-				</c:forEach>
-				
-				<li class="page-item"><a class="page-link"
-					href="?page=${boards.number+1}">다음</a></li>
-			</ul>
-		</c:when>
-
-		<c:when test="${boards.last}">
-			<ul class="pagination justify-content-center">
-				<li class="page-item"><a class="page-link"
+			</c:when>
+			<c:otherwise>
+				<li class="page-item "><a class="page-link"
 					href="?page=${boards.number-1}">이전</a></li>
-					
-				<c:forEach var="i" begin="1" end="${boards.totalPages}" step="1">
-					<c:choose>
-					<c:when test="${i eq boards.number+1}">
-					<li class="page-item active"><a class="page-link" href="?page=${i-1}">${i}</a></li>
-					</c:when>
-					<c:otherwise>
-					<li class="page-item "><a class="page-link" href="?page=${i-1}">${i}</a></li>
-					</c:otherwise>
-					</c:choose>
-				</c:forEach>
-				
-				<li class="page-item disabled"><a class="page-link"
-					href="?page=${boards.number+1}">다음</a></li>
-			</ul>
-		</c:when>
+			</c:otherwise>
+		</c:choose>
 
-		<c:otherwise>
-			<ul class="pagination justify-content-center">
-				<li class="page-item"><a class="page-link"
-					href="?page=${boards.number-1}">이전</a></li>
+
+		<c:forEach var="i" begin="1" end="${boards.totalPages}" step="1">
+			<c:choose>
+				<c:when test="${i eq boards.number+1}">
+					<li class="page-item active"><a class="page-link"
+						href="?page=${i-1}">${i}</a></li>
+				</c:when>
+				<c:otherwise>
+					<li class="page-item "><a class="page-link"
+						href="?page=${i-1}">${i}</a></li>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+
+		<c:choose>
+			<c:when test="${boards.last}">
+						<li class="page-item disabled"><a class="page-link"
+			href="?page=${boards.number+1}">다음</a></li>
 					
-				<c:forEach var="i" begin="1" end="${boards.totalPages}" step="1">
-					<c:choose>
-					<c:when test="${i eq boards.number+1}">
-					<li class="page-item active"><a class="page-link" href="?page=${i-1}">${i}</a></li>
-					</c:when>
-					<c:otherwise>
-					<li class="page-item "><a class="page-link" href="?page=${i-1}">${i}</a></li>
-					</c:otherwise>
-					</c:choose>
-				</c:forEach>
-				
-				<li class="page-item"><a class="page-link"
-					href="?page=${boards.number+1}">다음</a></li>
-			</ul>
-		</c:otherwise>
-	</c:choose>
+			</c:when>
+			<c:otherwise>
+						<li class="page-item"><a class="page-link"
+			href="?page=${boards.number+1}">다음</a></li>
+			</c:otherwise>
+		</c:choose>
+	</ul>
+
 </div>
 <script>
 console.log(${boards.number})

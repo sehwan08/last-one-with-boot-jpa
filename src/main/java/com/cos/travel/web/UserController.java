@@ -63,7 +63,7 @@ public class UserController {
 			User user = dto.toEntity();
 			User userEntity = userService.join(user);
 			System.out.println(userEntity);
-			return "user/login";
+			return "redirect:/login";
 		}
 	}
 	
@@ -73,6 +73,20 @@ public class UserController {
 	public String idCheck(@RequestBody User user) {
 		
 		boolean result = userService.idCheck(user);
+		
+		if( result == false ) {
+			return "Fail";
+		}
+		return "success";
+	}
+	
+	
+	//이메일 중복 확인
+	@PostMapping("/emailCheck")
+	@ResponseBody
+	public String emailCheck(@RequestBody User user) {
+		
+		boolean result = userService.emailCheck(user);
 		
 		if( result == false ) {
 			return "Fail";

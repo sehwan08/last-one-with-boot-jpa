@@ -8,4 +8,5 @@ public interface BoardRepository extends JpaRepository<Board, Integer> {
 	
 	public void deleteById(int id);
 	
+	
 }

@@ -32,7 +32,11 @@
 			<div class="form-group">
 				<label for="email">이메일:</label> <input type="email"
 					class="form-control" name="email" placeholder="이메일을 입력하세요"
-					required="required" maxlength="50">
+					required="required" maxlength="50" id="email">
+					<div>
+					<button type="button" class="btn btn-primary float-right" id="btncheckEmail">이메일 중복 확인</button>
+					<br>
+					</div>
 			</div>
 
 			<label for="gender">성별:</label>
@@ -139,49 +143,7 @@
 				onclick="location.href='/'">뒤로가기</button>
 		</div>
 	</form>
-<script>
-
-	var isChecked = false; 
-	
-	$("#btncheckId").click(function(){
-		var data = {
-				"username":$("#username").val(),
-		}
-		$.ajax({
-			type:"post",
-			url:"/idCheck",
-			contentType:"application/json; charset=utf-8",
-			data: JSON.stringify(data)
-		})
-		.done(function(resp){
-			if(resp=="success"){
-				isChecked = true; //true 일떄만 폼이 날라가도록 
-				alert("사용 가능한 아이디 입니다.");
-			} else {
-				alert("중복된 아이디 입니다.")
-			}
-		})
-		.fail(function(){
-			alert("failed");
-		})
-	})
-	
-	$("#username").on("propertychange change keyup paste input", function() {
-	   //alert("changed!");
-		isChecked = false;
-	});
-	
-	
-	function register(event){
-		event.preventDefault()
-		//alert("")
-		if (isChecked == false) {
-			alert("아이디 중복 체크를 먼저 하세요!")
-			return false;
-		}
-		$("#myForm").submit();
-	}
-</script>
+<script src="/js/join.js"></script>
 </body>
 </html>
 

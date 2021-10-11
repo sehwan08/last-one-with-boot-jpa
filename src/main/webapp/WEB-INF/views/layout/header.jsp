@@ -36,7 +36,7 @@
 </head>
 <body>
 	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
-		<a class="navbar-brand" href="/">Home </a>
+		<!-- <a class="navbar-brand" href="/">Home </a> -->
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
@@ -44,15 +44,17 @@
 		<div class="collapse navbar-collapse" id="collapsibleNavbar">
 			<sec:authorize access="isAnonymous()">
 				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link" href="/login">로그인</a>
+				<li class="nav-item"><a class="nav-link" href="/" id="home" >HOME</a>
+					<li class="nav-item"><a class="nav-link" href="/login" id="login" >로그인</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="/join">회원
+					<li class="nav-item"><a class="nav-link" href="/join" id="join">회원
 							가입</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">인기 관광지</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">인기 맛집</a></li>
-					<li class="nav-item"><a class="nav-link" href="/etc/info">With
+					<li class="nav-item"><a class="nav-link" href="#" id="popular1">인기 관광지</a></li>
+					<li class="nav-item"><a class="nav-link" href="#" id="popukar2">인기 맛집</a></li>
+					<li class="nav-item"><a class="nav-link" href="/board" id="travel">여행 이야기</a></li>
+					<li class="nav-item"><a class="nav-link" href="/etc/info" id="corona">With
 							Corona</a></li>
-					<li class="nav-item"><a class="nav-link" href="/board/notice">공지사항</a></li>
+					<li class="nav-item"><a class="nav-link" href="/board/notice" id="notice">공지사항</a></li>
 				</ul>
 			</sec:authorize>
 			<c:choose>
@@ -60,11 +62,11 @@
 					<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
 						<ul class="navbar-nav">
 							<li class="nav-item"><a class="nav-link"
-								href="/admin/userlist">회원 관리</a></li>
-							<li class="nav-item"><a class="nav-link" href="/board/list">게시판
+								href="/admin/userlist" id="userManager">회원 관리</a></li>
+							<li class="nav-item"><a class="nav-link" href="/board/list" id="board">여행 이야기
 									관리</a></li>
 							<li class="nav-item"><a class="nav-link"
-								href="/board/notice">공지사항 관리</a></li>
+								href="/board/notice" id="notice">공지사항 관리</a></li>
 							<li class="nav-item"><a class="nav-link" href="/logout">로그아웃(<sec:authentication
 										property="principal.user.username" />)
 							</a></li>
@@ -75,13 +77,13 @@
 					<sec:authorize access="isAuthenticated()">
 						<ul class="navbar-nav">
 							<li class="nav-item"><a class="nav-link"
-								href="/user/${principal.user.id}/update">회원 정보 수정</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">인기 관광지</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">인기 맛집</a></li>
-							<li class="nav-item"><a class="nav-link" href="/etc/info">With
+								href="/user/${principal.user.id}/update" id="update">회원 정보 수정</a></li>
+							<li class="nav-item"><a class="nav-link" href="#" id="popular1">인기 관광지</a></li>
+							<li class="nav-item"><a class="nav-link" href="#" id="popukar2">인기 맛집</a></li>
+							<li class="nav-item"><a class="nav-link" href="/etc/info" id="corona" >With
 									Corona</a></li>
 							<li class="nav-item"><a class="nav-link"
-								href="/board/notice">공지사항</a></li>
+								href="/board/notice" id="notice">공지사항</a></li>
 							<li class="nav-item"><a class="nav-link" href="/logout">로그아웃(<sec:authentication
 										property="principal.user.username" />)
 							</a></li>
@@ -96,9 +98,51 @@
 	</nav>
 	<br>
 
+<script>
+console.log(window.location.pathname)
+
+$("#login").removeClass("active")
+$("#join").removeClass("active")
+$("#popular1").removeClass("active")
+$("#popukar2").removeClass("active")
+$("#travel").removeClass("active")
+$("#corona").removeClass("active")
+$("#notice").removeClass("active")
+$("#update").removeClass("active")
+$("#travel").removeClass("active")
+$("#userManager").removeClass("active")
+$("#home").removeClass("active")
 
 
+switch (window.location.pathname) {
+	case "/login":
+		$("#login").addClass("active")
+		break;
+	case "/join":
+		$("#join").addClass("active")
+		break;
+	case "/":
+		$("#home").addClass("active")
+		break;
+	case "/etc/info":
+		$("#corona").addClass("active")
+		break;
+	case "/board/notice":
+		$("#notice").addClass("active")
+		break;
+	case "/board":
+		$("#travel").addClass("active")
+		break;
+	case "/user/${principal.user.id}/update":
+		$("#update").addClass("active")
+		break;
+	case "/admin/userlist":
+		$("#userManager").addClass("active")
+		break;
+	
+}
 
+</script>
 
 </body>
 </html>

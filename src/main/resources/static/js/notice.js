@@ -10,6 +10,23 @@ let index = {
 	},
 	save: function() { //this.save()의 save
 		//alert("user.js의 save 함수 호출됨");
+		
+		if($("#title").val()==""){
+			alert("제목을 입력하세요.");
+			$("title").focus();
+			return false;
+		}
+		
+		/*console.log($("#content").val())*/
+		
+		
+		if($("#content").val()==""){
+			alert("내용을 입력하세요.");
+			$("content").focus();
+			return false;
+		}
+		
+		
 		let data = {
 			title: $("#title").val(),
 			content: $("#content").val()
