@@ -12,8 +12,11 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.io.BufferedReader;
 import java.io.IOException;
+
+
 
 @Controller
 public class InfoController {
@@ -192,4 +195,11 @@ public class InfoController {
 	public String corona() {
 		return "etc/info";
 	}
+	
+	
+	//요일 구하기 21.10.12
+	
+	
 }
+
+

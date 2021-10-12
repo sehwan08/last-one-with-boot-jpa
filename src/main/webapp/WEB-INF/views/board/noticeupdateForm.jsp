@@ -27,13 +27,14 @@
 	</form>
 
 
-	<br>
+	<p style="font-size:12px; color:red;">※사진 첨부시 사진을 클릭하여 사이즈를 50%이하로 줄여 주세요! </p>
 	<div class="float-right">
 				<button class="btn btn-primary" id="btn-update">수정 완료</button>
 				<button type="button" id="btnDelete" class="btn btn-danger">삭제</button>
 				<button type="button" class="btn btn-primary"
 					onclick="history.back()">이전</button>
 	</div>
+	<br>
 </div>
 
 
