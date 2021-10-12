@@ -149,7 +149,7 @@ public class InfoController {
 //		System.out.println("오늘날짜:"+today);
 		
 		
-        StringBuilder urlBuilder = new StringBuilder("https://nip.kdca.go.kr/irgd/cov19stats.do?list=sido"); /*URL*/
+        StringBuilder urlBuilder = new StringBuilder("https://api.openweathermap.org/data/2.5/forecast?q=Busan&appid=51a9596817c1a197fb2e23f7a88ec9cd"); /*URL*/
         //urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=C7TQWZckjR7aJC72Xpst19alIqj9wPXlz2cIacI40%2Fiq64nRSS%2FX%2BlH51HE8XkqctubTUdxGeZd6XltoW84DEA%3D%3D"); /*Service Key*/
         //urlBuilder.append("&" + URLEncoder.encode("ServiceKey","UTF-8") + "=" + URLEncoder.encode("-", "UTF-8")); /*공공데이터포털에서 받은 인증키*/
        // urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
@@ -182,9 +182,9 @@ public class InfoController {
         String jsonPrettyPrintString = xmlJSONObj.toString(PRETTY_PRINT_INDENT_FACTOR);
 //        System.out.println(jsonPrettyPrintString);
         
-        
 		return jsonPrettyPrintString;
 	}
+	
 	
 	
 	//코로나 화면
