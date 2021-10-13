@@ -3,7 +3,7 @@
 <%@ include file="../layout/header.jsp"%>
 
 <div class="container">
-<h1>공지사항 쓰기</h1>
+<h1>여행이야기 쓰기</h1>
 <br>
 	<form>
 		<div class="form-group">

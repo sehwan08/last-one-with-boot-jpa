@@ -13,7 +13,7 @@
 				<div class="form-group">
 					<label for="sel1"></label> <select class="form-control" id="sel1">
 						<option>검색</option>
-						<option>모두</option>
+						<option>전체</option>
 						<option>아이디</option>
 						<option>이메일</option>
 					</select>
@@ -24,6 +24,10 @@
 					onclick="onSearch(event)">Search</button>
 			</form>
 		</div>
+		
+		
+		
+		
 		<div class="clearfix"></div>
 		<c:forEach var="user" items="${lists.content}">
 			

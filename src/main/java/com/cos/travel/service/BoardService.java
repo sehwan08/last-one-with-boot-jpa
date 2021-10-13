@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cos.travel.model.Board;
 import com.cos.travel.model.User;
 import com.cos.travel.repository.BoardRepository;
+import com.cos.travel.web.dto.search.SearchDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -67,4 +68,30 @@ public class BoardService {
 		board.setTitle(requestBoard.getTitle());
 		board.setContent(requestBoard.getContent());
 	}
+	
+	
+	//검색 - 모두
+		@Transactional(readOnly = true)
+		public Page<Board> searchByText(SearchDto dto, Pageable pageable){
+			
+			Page<Board> userlist = null;
+			
+			System.out.println("pageable.getOffset()="+pageable.getOffset());
+			System.out.println("pageable.getPageSize()="+pageable.getPageSize());
+			System.out.println("pageable.getPageNumber()="+pageable.getPageNumber());
+			
+			switch (dto.getGubun()) {
+			/*
+			 * case "전체": System.out.println("======================="); userlist =
+			 * boardRepository.findByText(dto.getText(), pageable); break;
+			 */
+				case "작성일":
+					userlist = boardRepository.searchByDate(dto.getText(), pageable); 
+					break;
+				case "제목+내용":
+					userlist = boardRepository.findByText(dto.getText(), pageable);
+					break;
+			}
+			return userlist;
+		}
 }
