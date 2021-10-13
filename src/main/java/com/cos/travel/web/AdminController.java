@@ -84,7 +84,7 @@ public class AdminController {
 	 * model.addAttribute("lists", lists); return "admin/userlist"; }
 	 */
 	
-	//회원 모두 검색
+	//모든 검색 컨트롤러
 	@GetMapping("/admin/findbytext")
 	public String findByText(Model model, @ModelAttribute SearchDto dto, @PageableDefault(size = 3, sort = "id",
 	direction = Sort.Direction.DESC) Pageable pageable) {

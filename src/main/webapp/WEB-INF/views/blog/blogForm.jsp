@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
+
 <div class="container">
 <h1>공지사항 쓰기</h1>
 <br>
@@ -26,7 +27,16 @@
 		tabsize : 2,
 		height : 300,
 		placeholder: 'Enter Content'
+/* 		toolbar: [
+	          ['style', ['style']],
+	          ['font', ['bold', 'underline', 'clear']],
+	          ['color', ['color']],
+	          ['para', ['ul', 'ol', 'paragraph']],
+	          ['table', ['table']],
+	          ['insert', ['link', 'video']],
+	          ['view', ['fullscreen', 'codeview', 'help']]
+	        ] */
 	});
 </script>
 
-<script src="/js/notice.js"></script>
+<script src="/js/blog.js"></script>

@@ -21,11 +21,11 @@ public class BoardController {
 	private final BoardService boardService;
 	
 	//공지사항 이동 및 리스팅
-	@GetMapping("/board/notice")
+	@GetMapping("/board/boardMain")
 	public String notice(Model model,
 			@PageableDefault(size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
 		model.addAttribute("boards", boardService.list(pageable));
-		return "board/notice";
+		return "board/boardMain";
 	}
 	
 	//공지사항 쓰기 이동
@@ -44,10 +44,4 @@ public class BoardController {
 		return "board/noticedetail";
 	}
 	
-	
-	//게시판으로 이동
-	@GetMapping("/board")
-	public String board() {
-		return "board/main";
-	}
 }

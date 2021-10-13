@@ -91,17 +91,19 @@ public class UserService {
 		return true;
 	}
 	
-	//검색 - 아이디
-	@Transactional(readOnly = true)
-	public Page<User> searchUsername(String username, Pageable pageable){
-		return userRepository.findByUsernameContaining(username, pageable); 
-	}
-	
-	//검색 - 이메일
-	@Transactional(readOnly = true)
-	public Page<User> searchEmail(String email, Pageable pageable){
-		return userRepository.findByEmailContaining(email, pageable); 
-	}
+	/*
+	 * //검색 - 아이디
+	 * 
+	 * @Transactional(readOnly = true) public Page<User> searchUsername(String
+	 * username, Pageable pageable){ return
+	 * userRepository.findByUsernameContaining(username, pageable); }
+	 * 
+	 * //검색 - 이메일
+	 * 
+	 * @Transactional(readOnly = true) public Page<User> searchEmail(String email,
+	 * Pageable pageable){ return userRepository.findByEmailContaining(email,
+	 * pageable); }
+	 */
 	
 	//검색 - 모두
 	@Transactional(readOnly = true)

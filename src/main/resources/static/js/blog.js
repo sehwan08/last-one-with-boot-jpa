@@ -37,7 +37,7 @@ let index = {
 			//오브젝트가 들어오는 곳
 			//통신 수행
 			type: "post",
-			url: "/board/noticeForm",
+			url: "/blog/blogForm",
 			data: JSON.stringify(data),//HTTP BODY DATA
 			contentType:  "application/json; charset=utf-8", //body데이터의 타입
 			dataType: "json" //서버에서 받을 데이터 형식, 즉 json으로 던지고 서버를위해 자동 파싱 = JSON->JS
@@ -46,7 +46,7 @@ let index = {
 			alert("글쓰기 완료");
 			//alert(resp)
 			console.log(resp);
-			location.href = "/board/boardMain";
+			location.href = "/blog/blogMain";
 		}).fail(function(error) {
 			//통신이 비정상이면 fail
 			alert(JSON.stringify(error));
