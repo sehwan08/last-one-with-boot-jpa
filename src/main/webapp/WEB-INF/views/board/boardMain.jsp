@@ -9,9 +9,8 @@
 			<div class="form-group">
 				<label for="sel1"></label> <select class="form-control" id="sel1">
 					<option>검색</option>
-					<option>전체</option>
-					<option>작성일</option>
 					<option>제목+내용</option>
+					<option>작성일</option>
 				</select>
 			</div>
 			<input class="form-control mr-sm-2" type="text" placeholder="Search"

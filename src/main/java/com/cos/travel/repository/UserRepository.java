@@ -1,4 +1,4 @@
-package com.cos.travel.repository;
+ package com.cos.travel.repository;
 
 
 import org.springframework.data.domain.Page;

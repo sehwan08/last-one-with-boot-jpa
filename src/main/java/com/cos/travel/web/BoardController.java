@@ -52,11 +52,13 @@ public class BoardController {
 	public String findByText(Model model, @ModelAttribute SearchDto dto, @PageableDefault(size = 5, sort = "id",
 	direction = Sort.Direction.DESC) Pageable pageable) {
 		
-//		System.out.println("===========호출==============");
+		System.out.println("구분자 어떻게 들어옴?:"+dto.getGubun());
+		
+		System.out.println("===========호출==============");
 //		System.out.println(dto.getText()+" "+dto.getGubun());
 		
 		Page<Board> lists = boardService.searchByText(dto, pageable);
-		System.out.println(lists.getSize());
+//		System.out.println(lists.getSize());
 		model.addAttribute("boards", lists);
 		return "board/boardMain";
 	}
