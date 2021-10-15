@@ -5,6 +5,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cos.travel.config.auth.PrincipalDetails;
 import com.cos.travel.model.Blog;
 import com.cos.travel.service.BlogService;
 
@@ -41,9 +45,29 @@ public class BlogController {
 	
 	// 블로그 상세 보기
 	@GetMapping("/blog/blogDetail/{id}")
-	public String findById(@PathVariable int id, Model model) {
+	public String findById(@PathVariable int id,
+			Model model/* , @AuthenticationPrincipal PrincipalDetails principalDetails */) {
+		
+		//System.out.println("principal username:"+principalDetails.getUsername());
+		
+		String username = "";
+		
+		Object principal = SecurityContextHolder. getContext(). getAuthentication(). getPrincipal();
+		if (principal instanceof UserDetails) {
+		username = ((UserDetails)principal). getUsername();
+		} else {
+		username = principal. toString();
+		}
+		//System.out.println("username:"+username);
+		
 		Blog blog = blogService.detail(id);
-		blog.setCount(blog.getCount()+1);
+		//System.out.println("blog의 username:"+blog.getUser().getUsername());
+		
+		if (!username.equals(blog.getUser().getUsername())) {
+			//System.out.println("if문 실행됨?=======================");
+			blog.setCount(blog.getCount()+1);
+		}
+		
 		blogService.update(id, blog);
 		model.addAttribute("blog", blog);
 		return "blog/blogDetail";

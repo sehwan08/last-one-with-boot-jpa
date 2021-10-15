@@ -144,7 +144,7 @@
 		</div>
 	</form>
 	<br>
-<%@ include file="../layout/footer.jsp"%>
+<%-- <%@ include file="../layout/footer.jsp"%> --%>
 <script src="/js/join.js"></script>
 </body>
 </html>

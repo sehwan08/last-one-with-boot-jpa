@@ -1,5 +1,7 @@
 package com.cos.travel.service;
 
+import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -71,7 +73,7 @@ public class BlogService {
 
 	// 댓글 쓰기
 	@Transactional
-	public void replyInsert(ReplyDto replyDto) {
+	public void replyInsert(ReplyDto replyDto/* , Reply reply */) {
 
 		/* 영속화 첫번째 개념
 		 * User user = userRepository.findById(replyDto.getUserId()).orElseThrow(() -> {
@@ -88,12 +90,29 @@ public class BlogService {
 		 * Reply.builder().user(user).blog(blog).content(replyDto.getContent()).build();
 		 */
 		
+//		Optional<Blog> b = blogRepository.findById(reply.getBlog().getId());
+//		b.get().setReplyCount(b.get().getReplyCount()+1);
+		
 		replyRepository.mSave(replyDto.getUserId(), replyDto.getBlogId(), replyDto.getContent());
+		
+		int blogId = replyDto.getBlogId();
+		Optional<Blog> blog = blogRepository.findById(blogId);
+		if(blog.isPresent()) {
+			blog.get().setReplyCount(blog.get().getReplyCount()+1);
+			blogRepository.save(blog.get());
+		}
+		
 	}
 	
 	//댓글 삭제
 	@Transactional
-	public void deleteReply(int replyId) {
-		replyRepository.deleteById(replyId);
+	public void deleteReply(ReplyDto replyDto) {
+		replyRepository.deleteById(replyDto.getReplyId());
+		int blogId = replyDto.getBlogId();
+		Optional<Blog> blog = blogRepository.findById(blogId);
+		if(blog.isPresent()) {
+			blog.get().setReplyCount(blog.get().getReplyCount()-1);
+			blogRepository.save(blog.get());
+		}
 	}
 }

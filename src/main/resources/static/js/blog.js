@@ -113,14 +113,23 @@ let index = {
 			alert(JSON.stringify(error));
 		});
 	},
+	
 	replyDelete: function(blogId, replyId) { //this.save()의 save
 		if (!confirm("정말 삭제할까요?"))
 		return false;
 		
+		let data = {
+			replyId: replyId,
+			blogId: blogId
+		};
+		
+		console.log(data);
 		
 		$.ajax({
 			type: "DELETE",
-			url: `/api/blogDetail/${blogId}/reply/${replyId}`,
+			url: `/api/blogDetail/${blogId}/reply/${replyId}`, 
+			data: JSON.stringify(data),
+			contentType: "application/json; charset=utf-8",
 			dataType: "json" //서버에서 받을 데이터 형식, 즉 json으로 던지고 서버를위해 자동 파싱 = JSON->JS
 		}).done(function(resp) { //위의 데이터가 js로 바뀌고 파라미터로 사용 가능
 			//통신이 정상이면 done

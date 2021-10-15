@@ -23,7 +23,7 @@
 	DayOfWeek dayofWeek = now.getDayOfWeek();
 
 	String dayName = dayofWeek.getDisplayName(TextStyle.FULL, Locale.KOREAN);%>
-	<div class="container">
+	<div class="container" style="padding-bottom:100px">
 		<h2>
 			부산 코로나 현황 (<%=month%>월
 			<%=day%>일
@@ -113,7 +113,6 @@
 		<br>
 	</div>
 	<br>
-<%@ include file="../layout/footer.jsp"%>
 
 
 

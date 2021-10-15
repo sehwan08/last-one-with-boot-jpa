@@ -60,6 +60,7 @@ public class AdminController {
 		return "board/noticeupdateForm";
 	}
 	
+	
 	/*
 	 * //회원 아이디로 검색
 	 * 

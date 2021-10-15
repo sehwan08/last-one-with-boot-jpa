@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import com.cos.travel.model.Board;
+import com.cos.travel.model.User;
 import com.cos.travel.service.BoardService;
 import com.cos.travel.web.dto.search.SearchDto;
 
@@ -41,8 +42,11 @@ public class BoardController {
 	//공지사항 상세보기
 	@GetMapping("/board/{id}")
 	public String findById(@PathVariable int id, Model model) {
+		
 		Board board = boardService.detail(id);
+		
 		board.setCount(board.getCount()+1);
+		
 		boardService.update(id, board);
 		model.addAttribute("board", board);
 		return "board/noticedetail";

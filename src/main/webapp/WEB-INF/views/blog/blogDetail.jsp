@@ -27,6 +27,7 @@
 	</div>
 	<hr>
 
+
 	<div class="card">
 		<form>
 			<input type="hidden" id="userId" value="${principal.user.id}" /> <input
@@ -78,10 +79,13 @@
 					onclick="location.href='/blog/blogUpdate/${blog.id}'">수정</button>
 				<button type="button" class="btn btn-primary"
 					onclick="location.href='/blog/blogMain'">블로그로 이동</button>
+				<span id="likebtn">🧡</span>
 			</c:when>
 			<c:otherwise>
+
 				<button type="button" class="btn btn-primary"
 					onclick="location.href='/blog/blogMain'">블로그로 이동</button>
+				<span id="likebtn">🧡</span>
 			</c:otherwise>
 		</c:choose>
 
@@ -92,3 +96,82 @@
 
 
 <script src="/js/blog.js"></script>
+
+<script>
+
+let isliked = false;
+
+$("#likebtn").click(function(){
+	if (isliked == true){
+		deletelike();
+	} else {
+		addlike();
+	}
+})  //btnDelete
+
+$(document).ready(function(){
+	checkheart();
+});
+function checkheart(){
+	$.ajax({
+		type :"get",
+		url : "/api/blog/${blog.id}/likes",
+		success:function(resp){
+			console.log(resp);
+			if(resp.message=="no"){
+				//alert("좋아요를 할 수 있어요!");
+				$("#likebtn").html("🤍")
+				isliked = false;
+			} else {
+				$("#likebtn").html("🧡")
+				isliked = true;
+			}
+		}, //success
+		error:function(error){
+			console.log(error)
+			alert("error")
+		}		
+	})//ajax
+}
+
+function addlike(){
+	$.ajax({
+		type :"post",
+		url : "/api/blog/${blog.id}/likes",
+		success:function(resp){
+			console.log(resp);
+			if(resp.message=="success"){
+				//alert("좋아요 성공");
+				checkheart();
+			} else {
+				alert("좋아요 실패");
+			}
+		}, //success
+		error:function(error){
+			console.log(error)
+			alert("error")
+		}		
+	})//ajax
+}
+
+function deletelike(){
+	$.ajax({
+		type :"delete",
+		url : "/api/blog/${blog.id}/likes",
+		success:function(resp){
+			console.log(resp);
+			if(resp.message=="success"){
+				//alert("좋아요 성공");
+				checkheart();
+			} else {
+				alert("좋아요 실패");
+			}
+		}, //success
+		error:function(error){
+			console.log(error)
+			alert("error")
+		}		
+	})//ajax
+}
+
+</script>
