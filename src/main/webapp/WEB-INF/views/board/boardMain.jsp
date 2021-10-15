@@ -109,8 +109,9 @@
 			</c:otherwise>
 		</c:choose>
 	</ul>
-
 </div>
+<br>
+<%@ include file="../layout/footer.jsp"%>
 <script>
 	function onSearch(event) {
 		event.preventDefault()

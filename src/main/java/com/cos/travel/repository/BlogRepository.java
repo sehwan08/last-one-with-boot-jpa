@@ -6,4 +6,5 @@ import com.cos.travel.model.Blog;
 
 public interface BlogRepository extends JpaRepository<Blog, Integer> {
 
+	public void deleteById(int id);
 }

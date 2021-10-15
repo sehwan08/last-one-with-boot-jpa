@@ -92,6 +92,8 @@
 			</ul>
 	</div>
 </div>
+
+<%@ include file="../layout/footer.jsp"%>
 <script>
 	$("button[name='btnDelete']").click(function() {
 		if (!confirm("정말 삭제할까요?"))

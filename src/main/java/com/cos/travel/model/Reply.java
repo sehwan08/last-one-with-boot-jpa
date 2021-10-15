@@ -1,23 +1,17 @@
 package com.cos.travel.model;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
 import javax.persistence.PrePersist;
-import javax.persistence.Transient;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.cos.travel.web.dto.reply.ReplyDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,28 +23,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-public class Blog {
-
+public class Reply {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private String title;
-	@Lob
+	@Column(nullable = false, length = 200)
 	private String content;
-	private int count; //조회수
 	
-	@Transient
-	private int likeCount;
+	@ManyToOne
+	@JoinColumn(name="blogId")
+	private Blog blog;
 	
+	@ManyToOne
 	@JoinColumn(name="userId")
-	@ManyToOne(fetch = FetchType.EAGER)
 	private User user;
-	
-	@OneToMany(mappedBy="blog", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties({"blog"})
-	@OrderBy("createDate desc")
-	private List<Reply> replies;
 	
 	private LocalDateTime createDate;
 	
@@ -58,4 +46,10 @@ public class Blog {
 	public void createDate() {
 		this.createDate = LocalDateTime.now();
 	}
+	
+	/*
+	 * public void update(User user, Blog blog, String content) { setUser(user);
+	 * setBlog(blog); setContent(content); }
+	 */
+
 }

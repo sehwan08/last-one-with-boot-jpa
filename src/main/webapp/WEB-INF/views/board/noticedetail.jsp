@@ -27,7 +27,7 @@
 	</div>
 
 
-	<br> <br>
+	<br>
 	<div class="float-right">
 		<c:choose>
 			<c:when test="${principal.user.role == 'ROLE_ADMIN'}">
@@ -37,7 +37,7 @@
 			</c:when>
 			<c:otherwise>
 				<button type="button" class="btn btn-primary"
-					onclick="history.back()">이전</button>
+					onclick="location.href='/board/boardMain'">공지사항으로 이동</button>
 			</c:otherwise>
 		</c:choose>
 

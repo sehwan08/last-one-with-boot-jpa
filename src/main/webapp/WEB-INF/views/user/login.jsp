@@ -30,4 +30,6 @@
 		</div>
 	</form>
 </body>
+<br>
+<%@ include file="../layout/footer.jsp"%>
 </html>

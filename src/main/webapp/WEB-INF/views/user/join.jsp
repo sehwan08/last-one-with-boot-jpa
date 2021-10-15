@@ -143,6 +143,8 @@
 				onclick="location.href='/'">뒤로가기</button>
 		</div>
 	</form>
+	<br>
+<%@ include file="../layout/footer.jsp"%>
 <script src="/js/join.js"></script>
 </body>
 </html>
