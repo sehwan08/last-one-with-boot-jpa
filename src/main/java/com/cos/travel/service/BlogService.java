@@ -15,6 +15,7 @@ import com.cos.travel.repository.BlogRepository;
 import com.cos.travel.repository.ReplyRepository;
 import com.cos.travel.repository.UserRepository;
 import com.cos.travel.web.dto.reply.ReplyDto;
+import com.cos.travel.web.dto.search.SearchDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -24,13 +25,13 @@ public class BlogService {
 
 	private final BlogRepository blogRepository;
 	private final ReplyRepository replyRepository;
-	private final UserRepository userRepository;
 
 	// 블로그 쓰기
 	@Transactional
 	public void insert(Blog blog, User user) {
 		blog.setCount(0);
 		blog.setUser(user);
+		blog.setWriter(user.getUsername());
 		blogRepository.save(blog);
 	}
 
@@ -75,9 +76,10 @@ public class BlogService {
 	@Transactional
 	public void replyInsert(ReplyDto replyDto/* , Reply reply */) {
 
-		/* 영속화 첫번째 개념
-		 * User user = userRepository.findById(replyDto.getUserId()).orElseThrow(() -> {
-		 * return new IllegalArgumentException("댓글 실패 : 유저 아이디 못찾음"); }); // 영속화
+		/*
+		 * 영속화 첫번째 개념 User user =
+		 * userRepository.findById(replyDto.getUserId()).orElseThrow(() -> { return new
+		 * IllegalArgumentException("댓글 실패 : 유저 아이디 못찾음"); }); // 영속화
 		 * 
 		 * Blog blog = blogRepository.findById(replyDto.getBlogId()).orElseThrow(() -> {
 		 * return new IllegalArgumentException("댓글 실패 : 블로그 아이디 못찾음"); });
@@ -89,30 +91,65 @@ public class BlogService {
 		 * Reply reply =
 		 * Reply.builder().user(user).blog(blog).content(replyDto.getContent()).build();
 		 */
-		
+
 //		Optional<Blog> b = blogRepository.findById(reply.getBlog().getId());
 //		b.get().setReplyCount(b.get().getReplyCount()+1);
-		
+
 		replyRepository.mSave(replyDto.getUserId(), replyDto.getBlogId(), replyDto.getContent());
-		
+
 		int blogId = replyDto.getBlogId();
 		Optional<Blog> blog = blogRepository.findById(blogId);
-		if(blog.isPresent()) {
-			blog.get().setReplyCount(blog.get().getReplyCount()+1);
+		if (blog.isPresent()) {
+			blog.get().setReplyCount(blog.get().getReplyCount() + 1);
 			blogRepository.save(blog.get());
 		}
-		
+
 	}
-	
-	//댓글 삭제
+
+	// 댓글 삭제
 	@Transactional
 	public void deleteReply(ReplyDto replyDto) {
 		replyRepository.deleteById(replyDto.getReplyId());
 		int blogId = replyDto.getBlogId();
 		Optional<Blog> blog = blogRepository.findById(blogId);
-		if(blog.isPresent()) {
-			blog.get().setReplyCount(blog.get().getReplyCount()-1);
+		if (blog.isPresent()) {
+			blog.get().setReplyCount(blog.get().getReplyCount() - 1);
 			blogRepository.save(blog.get());
 		}
+	}
+
+	// 검색
+	@Transactional(readOnly = true)
+	public Page<Blog> searchByText(SearchDto dto, Pageable pageable) {
+
+		Page<Blog> blogList = null;
+
+		System.out.println("pageable.getOffset()=" + pageable.getOffset());
+		System.out.println("pageable.getPageSize()=" + pageable.getPageSize());
+		System.out.println("pageable.getPageNumber()=" + pageable.getPageNumber());
+		
+		System.out.println("검색 서비스 실행 됨??=======================");
+		
+		switch (dto.getGubun()) {
+		/*
+		 * case "전체": System.out.println("======================="); userlist =
+		 * boardRepository.findByText(dto.getText(), pageable); break;
+		 */
+		case "작성일":
+			 System.out.println("작성일 실행됨?==========호출============");
+			blogList = blogRepository.searchByDate(dto.getText(), pageable);
+			break;
+		case "제목 내용":
+			 System.out.println("제목+내용 실행됨?==========호출============");
+			blogList = blogRepository.findByText(dto.getText(), pageable);
+			break;
+		case "아이디":
+			System.out.println("아이디 검색 실행됨?================");
+			//blogList = blogRepository.searchByName(dto.getText(), pageable);
+			blogList = blogRepository.searchByName(dto.getText(), pageable);
+			System.out.println("blogList 개수 뭐임?:==================="+blogList.getTotalElements());
+			break;
+		}
+		return blogList;
 	}
 }

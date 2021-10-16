@@ -1,6 +1,9 @@
 package com.cos.travel.web;
 
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+import com.cos.travel.config.auth.PrincipalDetails;
 import com.cos.travel.model.Board;
 import com.cos.travel.model.User;
 import com.cos.travel.service.BoardService;
@@ -43,9 +47,20 @@ public class BoardController {
 	@GetMapping("/board/{id}")
 	public String findById(@PathVariable int id, Model model) {
 		
+		String username = "";
+		Object principal = SecurityContextHolder. getContext(). getAuthentication(). getPrincipal();
+		if (principal instanceof UserDetails) {
+		username = ((UserDetails)principal). getUsername();
+		} else {
+		username = principal. toString();
+		}
+		
 		Board board = boardService.detail(id);
 		
-		board.setCount(board.getCount()+1);
+		if (!username.equals(board.getUser().getUsername())) {
+			//System.out.println("if문 실행됨?=======================");
+			board.setCount(board.getCount()+1);
+		}
 		
 		boardService.update(id, board);
 		model.addAttribute("board", board);

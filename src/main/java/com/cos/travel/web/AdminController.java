@@ -61,6 +61,15 @@ public class AdminController {
 	}
 	
 	
+	//블로그 삭제
+	@DeleteMapping("/blog/blogDetail/{id}")
+	@ResponseBody
+	public String deleteBlog(@PathVariable int id) {
+		boardService.deleteBlog(id);
+		return "success";
+	}
+	
+	
 	/*
 	 * //회원 아이디로 검색
 	 * 

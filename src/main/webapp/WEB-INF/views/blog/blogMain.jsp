@@ -13,7 +13,7 @@
 			<div class="form-group">
 						 <label for="sel1"></label> <select class="form-control" id="sel1">
 					<option>검색</option>
-					<option>날짜</option>
+					<option>작성일</option>
 					<option>아이디</option>
 					<option>제목+내용</option>
 				</select>
@@ -132,4 +132,27 @@
 			$("p[name='myname']:eq(" + index + ")").html(item);
 		})
 	});
+</script>
+<script>
+	function onSearch(event) {
+		event.preventDefault()
+
+		let gubun = $("#sel1 option:selected").val() //sel 값을 받아옴
+		console.log(gubun)
+		if (gubun == "검색") {
+			alert("검색 구분자를 선택하세요!")
+			return false;
+		}
+
+		let text = $("#search").val()
+
+		if (text == "") {
+			alert("검색어를 입력 하세요");
+			$("#search").focus();
+			return false;
+		}
+
+		window.location = "/blog/findbytext" + "?page=0&gubun=" + gubun
+				+ "&text=" + text
+	}
 </script>

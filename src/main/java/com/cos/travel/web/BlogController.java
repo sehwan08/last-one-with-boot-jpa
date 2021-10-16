@@ -13,12 +13,14 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cos.travel.config.auth.PrincipalDetails;
 import com.cos.travel.model.Blog;
 import com.cos.travel.service.BlogService;
+import com.cos.travel.web.dto.search.SearchDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -86,6 +88,17 @@ public class BlogController {
 	public String delete(@PathVariable int id) {
 		blogService.delete(id);
 		return "success";
+	}
+	
+	//검색
+	@GetMapping("/blog/findbytext")
+	public String findByText(Model model, @ModelAttribute SearchDto dto, @PageableDefault(size = 3, sort = "id",
+	direction = Sort.Direction.DESC) Pageable pageable) {
+		Page<Blog> lists = blogService.searchByText(dto, pageable);
+		model.addAttribute("lists", lists);
+		System.out.println("개수 실행 됨?============"+lists.getTotalElements());
+		System.out.println("아이디 뭐임?==========="+dto.getText());
+		return "blog/blogMain";
 	}
 
 }

@@ -59,7 +59,7 @@
 					<div class="d-flex">
 						<div class="font-weight-bold">작성자: ${reply.user.username }
 							&nbsp;</div>
-						<c:if test="${reply.user.id == principal.user.id }">
+						<c:if test="${reply.user.id == principal.user.id}">
 							<button onClick="index.replyDelete(${blog.id}, ${reply.id})"
 								class="btn btn-danger btn-sm badge" style="font-size: 13px">삭제</button>
 						</c:if>
@@ -74,15 +74,26 @@
 	<br>
 	<div class="float-right">
 		<c:choose>
-			<c:when test="${principal.user.id == blog.user.id}">
+
+
+			<c:when test="${principal.user.id == reply.user.id}">
+
 				<button class="btn btn-primary"
 					onclick="location.href='/blog/blogUpdate/${blog.id}'">수정</button>
 				<button type="button" class="btn btn-primary"
 					onclick="location.href='/blog/blogMain'">블로그로 이동</button>
 				<span id="likebtn">🧡</span>
 			</c:when>
-			<c:otherwise>
 
+			<c:when test="${principal.user.role == 'ROLE_ADMIN'}">
+				<button type="button" id="btnDelete" class="btn btn-danger">삭제</button>
+				<button type="button" class="btn btn-primary"
+					onclick="location.href='/blog/blogMain'">블로그로 이동</button>
+				<span id="likebtn">🧡</span>
+			</c:when>
+
+
+			<c:otherwise>
 				<button type="button" class="btn btn-primary"
 					onclick="location.href='/blog/blogMain'">블로그로 이동</button>
 				<span id="likebtn">🧡</span>
@@ -174,4 +185,22 @@ function deletelike(){
 	})//ajax
 }
 
+</script>
+
+<script>
+	$("#btnDelete").click(function() {
+		if (!confirm("정말 삭제할까요?"))
+			return false
+		$.ajax({
+			type : "DELETE",
+			url : "/blog/blogDetail/"+${blog.id},
+			success : function(resp) {
+				console.log(resp);
+				if (resp == "success") {
+					alert("삭제성공");
+					location.href = "/blog/blogMain"
+				}
+			} //success
+		})//ajax
+	}) //btnDelete
 </script>

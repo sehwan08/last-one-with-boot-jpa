@@ -39,6 +39,7 @@ public class Blog {
 	@Lob
 	private String content;
 	private int count; // 조회수
+	private String writer;
 
 	private int replyCount;
 
@@ -50,7 +51,7 @@ public class Blog {
 
 	@OneToMany(mappedBy = "blog", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties({ "blog" })
-	@OrderBy("createDate desc")
+	//@OrderBy("createDate desc")
 	private List<Reply> replies;
 
 	@JsonIgnoreProperties({ "blog" })

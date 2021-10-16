@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cos.travel.model.Board;
 import com.cos.travel.model.User;
+import com.cos.travel.repository.BlogRepository;
 import com.cos.travel.repository.BoardRepository;
 import com.cos.travel.web.dto.search.SearchDto;
 
@@ -16,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class BoardService {
 
+	private final BlogRepository blogRepository;
 	private final BoardRepository boardRepository;
 
 	// 공지사항 쓰기
@@ -61,6 +63,12 @@ public class BoardService {
 		});
 		board.setTitle(requestBoard.getTitle());
 		board.setContent(requestBoard.getContent());
+	}
+	
+	// 블로그삭제 삭제
+	@Transactional
+	public void deleteBlog(int id) {
+		blogRepository.deleteById(id);
 	}
 
 	// 검색 - 모두
